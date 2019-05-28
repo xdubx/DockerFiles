@@ -1,0 +1,21 @@
+FROM niatn1012/apache-php-cc5:php72
+
+LABEL neopartei "test"
+
+# Download Concrete5 source files.
+# replace {version} with download version form concrete5 download server
+RUN apt-get update
+RUN curl -sSL -o /tmp/concrete5.zip http://www.concrete5.org/download_file/-/view/{version}/ \
+    && rm -f /var/www/html/index.html \
+    && unzip -q /tmp/concrete5.zip -d /usr/src/ \
+    && rm -f /tmp/concrete5.zip \
+    && mv /usr/src/concrete* /usr/src/concrete5 \
+    && chown -R www-data:www-data /var/www
+
+WORKDIR /var/www/html
+VOLUME [ "/var/www/html" ]
+
+# Expose 80 (HTTP) ports.
+EXPOSE 80
+
+CMD ["apache2-foreground"]
