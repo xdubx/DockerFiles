@@ -1,6 +1,6 @@
 FROM niatn1012/apache-php-cc5:php72
 
-LABEL terst "test"
+LABEL test "test"
 
 # Download Concrete5 source files.
 # replace {version} with download version form concrete5 download server
@@ -10,6 +10,7 @@ RUN curl -sSL -o /tmp/concrete5.zip http://www.concrete5.org/download_file/-/vie
     && unzip -q /tmp/concrete5.zip -d /usr/src/ \
     && rm -f /tmp/concrete5.zip \
     && mv /usr/src/concrete* /usr/src/concrete5 \
+    && mv /usr/src/concrete5/* /var/www/html \
     && chown -R www-data:www-data /var/www
 
 WORKDIR /var/www/html
