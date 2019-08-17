@@ -5,7 +5,7 @@ LABEL test "test"
 # Download Concrete5 source files.
 # replace {version} with download version form concrete5 download server
 RUN apt-get update
-RUN curl -sSL -o /tmp/concrete5.zip http://www.concrete5.org/download_file/-/view/{version}/ \
+RUN curl -sSL -o /tmp/concrete5.zip http://www.concrete5.org/download_file/-/view/109615/ \
     && rm -f /var/www/html/index.html \
     && unzip -q /tmp/concrete5.zip -d /usr/src/ \
     && rm -f /tmp/concrete5.zip \
